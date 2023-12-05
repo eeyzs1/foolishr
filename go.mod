@@ -1,4 +1,4 @@
-module foolishr
+module github.com/eeyzs1/foolishr
 
 go 1.21.4
 
