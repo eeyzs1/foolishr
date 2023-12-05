@@ -1,5 +1,24 @@
 package db_management
 
+import (
+	"fmt"
+	"fmt"
+	"net/http"
+	"os"
+	"os/exec"
+	"net"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+)
+func init_mysql(){
+
+}
+
+func init_redis(){
+
+}
+
+
 func op() {
 	dsn := "/path/to/mysql.sock"  // 请替换为实际的 MySQL 套接字路径
 	db, err := gorm.Open(mysql.New(mysql.Config{
