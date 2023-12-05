@@ -1,9 +1,10 @@
 package clis
 
 import (
-	"config"
+	"github.com/eeyzs1/foolishr/src/config"
+	"github.com/eeyzs1/foolishr/src/router"
+
 	"fmt"
-	"router"
 )
 
 func Start() {

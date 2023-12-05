@@ -3,14 +3,12 @@ module foolishr
 go 1.21.4
 
 require (
-	clis v0.0.0-00010101000000-000000000000
 	github.com/gin-gonic/gin v1.9.1
 	github.com/spf13/viper v1.17.0
 	gorm.io/driver/mysql v1.5.2
 	gorm.io/gorm v1.25.5
 )
 
-replace clis => ./src/clis
 
 require (
 	github.com/bytedance/sonic v1.9.1 // indirect

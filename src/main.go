@@ -2,7 +2,7 @@ package main
 
 import (
 	// "fmt"
-	"clis"
+	"github.com/eeyzs1/foolishr/src/clis"
   )
   
 func main() {
