@@ -8,10 +8,10 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
-)
+	"foolishr/src/config"
 
+	"github.com/gin-gonic/gin"
+)
 
 type FnRegistRouter = func(rgPublic *gin.RouterGroup, rgAuth *gin.RouterGroup)
 
@@ -19,8 +19,10 @@ var (
 	gfnRouters []FnRegistRouter
 )
 
-func RegisterRouter(fn FnRegistRouter){
-	if fn == nil { return }
+func RegisterRouter(fn FnRegistRouter) {
+	if fn == nil {
+		return
+	}
 	gfnRouters = append(gfnRouters, fn)
 }
 
@@ -39,14 +41,14 @@ func InitRouter() {
 		FnRegisterRouter(rgPublic, rgAuth)
 	}
 
-	stPort := viper.GetString("server.port")
+	stPort := config.GetServerPort()
 
 	if stPort == "" {
 		stPort = "10086"
 	}
 
 	srv := &http.Server{
-		Addr:    stPort,
+		Addr:    ":" + stPort,
 		Handler: r,
 	}
 
@@ -58,6 +60,7 @@ func InitRouter() {
 		}
 	}()
 
+	// block here to waiting for shutdown signal
 	<-ctx.Done()
 
 	// Restore default behavior on the interrupt signal and notify user of shutdown.
@@ -72,9 +75,8 @@ func InitRouter() {
 		log.Fatal("Server forced to shutdown: ", err)
 	}
 
-	log.Println("Server exiting")
+	log.Println("Server exited")
 }
-
 
 func InitBasePlatformRouters() {
 	InitUserRouters()
@@ -94,7 +96,7 @@ func InitUserRouters() {
 		rgAuthUser.GET("", func(ctx *gin.Context) {
 			ctx.AbortWithStatusJSON(http.StatusOK, gin.H{
 				"data": []map[string]any{
-					{"id":1, "name": "whoever"},
+					{"id": 1, "name": "whoever"},
 					{"ps": "whatever"},
 				},
 			})
@@ -102,15 +104,10 @@ func InitUserRouters() {
 
 		rgAuthUser.GET("/:id", func(ctx *gin.Context) {
 			ctx.AbortWithStatusJSON(http.StatusOK, gin.H{
-				"id": 1,
+				"id":   1,
 				"name": "whoever",
 			})
 		})
 
 	})
 }
-
-
-
-
-

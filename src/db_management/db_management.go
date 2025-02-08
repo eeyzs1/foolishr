@@ -2,11 +2,9 @@ package db_management
 
 import (
 	"fmt"
-	"fmt"
-	"net/http"
-	"os"
-	"os/exec"
 	"net"
+	"time"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -29,7 +27,33 @@ func op() {
 		fmt.Println("Error connecting to MySQL:", err)
 		return
 	}
-	defer db.Close()
+	// 获取底层的 *sql.DB 对象
+    sqlDB, err := db.DB()
+    if err != nil {
+        panic("failed to get underlying sql.DB")
+    }
+
+	// 设置连接池参数
+	sqlDB.SetMaxOpenConns(10)  // 最大打开连接数
+	sqlDB.SetMaxIdleConns(5)   // 最大空闲连接数
+	sqlDB.SetConnMaxLifetime(time.Hour) // 连接的最大存活时间
+
+	// 创建一个 1 秒超时的 context
+    ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+    defer cancel()
+
+    // 使用 WithContext 执行查询
+    var user User
+    result := db.WithContext(ctx).First(&user)
+    if result.Error != nil {
+        fmt.Println("Query failed:", result.Error)
+        return
+    }
+
+    fmt.Println("User found:", user)
+
+    // 关闭连接池
+    defer sqlDB.Close()
 
 
 	conn, err := net.Dial("unix", "/tmp/example.sock")
