@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 	// "os"
-	"github.com/fsnotify/fsnotify"
+	// "github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	// "gopkg.in/yaml.v3"
 )
@@ -36,23 +36,23 @@ func InitConfig() {
     //     fmt.Printf("配置解析失败: %v", err)
     // }
 
-	ViperInst.Set("database.host",  "127.0.0.1")    // 单级键 
-    ViperInst.Set("redis.port",  6379)            // 多级嵌套键[4]()[11]()
+	// ViperInst.Set("database.host",  "127.0.0.1")    // 单级键 
+    // ViperInst.Set("redis.port",  6379)            // 多级嵌套键[4]()[11]()
  
-    // 保存配置到文件 
-    if err := ViperInst.WriteConfig(); err != nil {  // 使用预定义路径[2]()
-        panic(fmt.Errorf("配置保存失败: %w", err))
-    }
+    // // 保存配置到文件 
+    // if err := ViperInst.WriteConfig(); err != nil {  // 使用预定义路径[2]()
+    //     panic(fmt.Errorf("配置保存失败: %w", err))
+    // }
     
-    fmt.Println("配置更新成功")
+    // fmt.Println("配置更新成功")
 
-	fmt.Println(ViperInst.GetString("server.port"))
+	// fmt.Println(ViperInst.GetString("server.port"))
 
-	ViperInst.WatchConfig()
-	ViperInst.OnConfigChange(func(e fsnotify.Event) {
-		fmt.Println("配置文件已更新:", e.Name)
-		//todo: 重新加载配置逻辑...
-	})
+	// ViperInst.WatchConfig()
+	// ViperInst.OnConfigChange(func(e fsnotify.Event) {
+	// 	fmt.Println("配置文件已更新:", e.Name)
+	// 	//todo: 重新加载配置逻辑...
+	// })
 
 }
 

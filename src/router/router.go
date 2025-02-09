@@ -3,20 +3,39 @@ package router
 import (
 	"context"
 	"log"
+	"math/rand"
 	"net/http"
 	"os/signal"
+	"sync"
 	"syscall"
 	"time"
 
 	"foolishr/src/config"
 
 	"github.com/gin-gonic/gin"
+
+	"gorm.io/gorm"
 )
 
 type FnRegistRouter = func(rgPublic *gin.RouterGroup, rgAuth *gin.RouterGroup)
 
+type User struct{
+	gorm.Model
+	Name string "gorm:"
+}
+
+const (
+	letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_-"
+	nameLength = 10
+	letterIdxBits = 6                      // 64字符需6位(2^6=64)
+    letterIdxMask = 1<<letterIdxBits - 1   // 掩码(0b111111)
+	moveLength = 5							//5*10 = 50 + 6<64
+)
+
 var (
 	gfnRouters []FnRegistRouter
+	r = rand.New(rand.NewSource(time.Now().UnixNano()))
+	rMu sync.Mutex
 )
 
 func RegisterRouter(fn FnRegistRouter) {
@@ -32,8 +51,8 @@ func InitRouter() {
 	defer stop()
 	r := gin.Default()
 
-	rgPublic := r.Group("/api/v/1/public")
-	rgAuth := r.Group("/api/v1")
+	rgPublic := r.Group("/api/public")
+	rgAuth := r.Group("/api/auth")
 
 	InitBasePlatformRouters()
 
@@ -62,7 +81,7 @@ func InitRouter() {
 
 	// block here to waiting for shutdown signal
 	<-ctx.Done()
-
+	
 	// Restore default behavior on the interrupt signal and notify user of shutdown.
 	// stop()
 	log.Println("shutting down gracefully, press Ctrl+C again to force")
@@ -93,7 +112,22 @@ func InitUserRouters() {
 		})
 
 		rgAuthUser := rgAuth.Group("user")
-		rgAuthUser.GET("", func(ctx *gin.Context) {
+		rgAuthUser.GET("register", func(ctx *gin.Context) {
+			// get parameters
+			name := ctx.PostForm("name")
+			telephone := ctx.PostForm("telephone")
+			password := ctx.PostForm("password")
+
+			// show the input check
+			//todo:put calculation in the front end
+			if len(telephone) != 11{
+				ctx.JSON(http.StatusUnprocessableEntity, gin.H{"code":422,"msg":"length of phone num should be 11"})
+			}
+			if len(name) == 0{
+				name = RadnomString()
+			}
+
+			
 			ctx.AbortWithStatusJSON(http.StatusOK, gin.H{
 				"data": []map[string]any{
 					{"id": 1, "name": "whoever"},
@@ -110,4 +144,18 @@ func InitUserRouters() {
 		})
 
 	})
+}
+
+
+func RadnomString() string{
+	result := make([]byte,nameLength)
+	rMu.Lock()
+    defer rMu.Unlock()
+	randomNum := r.Int63()
+	var Mask int64 = letterIdxMask
+	for i := range nameLength {
+		result[i] = letters[randomNum&(Mask)]
+		Mask <<= moveLength
+	}
+	return string(result)
 }

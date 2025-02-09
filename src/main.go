@@ -23,11 +23,9 @@ func main() {
     command := os.Args[1]
     switch command {
     case "start":
-        fmt.Println("启动服务...")
-        // 执行启动逻辑 
+        Start() 
     case "stop":
-        fmt.Println("停止服务...")
-        // 执行停止逻辑 
+        Stop() 
     default:
         fmt.Printf("未知命令: %s\n", command)
     }
