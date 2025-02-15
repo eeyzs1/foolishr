@@ -1,5 +1,5 @@
 gen:
-	protoc proto/*.proto --go_out=.
+	protoc -I proto proto/*.proto --go_out=.
 
 # 定义操作系统敏感的操作 
 ifeq ($(OS),Windows_NT)
