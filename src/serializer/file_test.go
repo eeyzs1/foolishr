@@ -1,4 +1,4 @@
-package serializer_test
+package serializer_test //name should be the pkg+"_test"
 
 import (
 	"testing"
@@ -13,8 +13,8 @@ import (
 func TestFileSerializer(t *testing.T) {
 	t.Parallel()
 
-	binaryFile := "../../tmp/laptop.bin"
-	jsonFile := "../../tmp/laptop.json"
+	binaryFile := "../tmp/laptop.bin"
+	jsonFile := "../tmp/laptop.json"
 
 	laptop1 := sample.NewLaptop()
 

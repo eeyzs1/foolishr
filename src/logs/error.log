@@ -1,0 +1,11 @@
+2025/02/19 11:29:18 [warn] 5712#5904: the "listen ... http2" directive is deprecated, use the "http2" directive instead in D:\foolishr\src/conf/nginx.conf:23
+2025/02/19 11:29:18 [emerg] 5712#5904: cannot load certificate "D:\foolishr\src/conf/cert/server-cert.pem": BIO_new_file() failed (SSL: error:80000003:system library::No such process:calling fopen(D:\foolishr\src/conf/cert/server-cert.pem, r) error:10000080:BIO routines::no such file)
+2025/02/19 11:30:29 [warn] 10592#9488: the "listen ... http2" directive is deprecated, use the "http2" directive instead in D:\foolishr\src/conf/nginx.conf:23
+2025/02/19 11:30:29 [emerg] 10592#9488: CreateDirectory() "D:\foolishr\src/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2025/02/19 11:31:09 [warn] 13016#17012: the "listen ... http2" directive is deprecated, use the "http2" directive instead in D:\foolishr\src/conf/nginx.conf:23
+2025/02/19 11:31:09 [emerg] 13016#17012: CreateFile() "D:/logs/nginx/error.log" failed (3: The system cannot find the path specified)
+2025/02/19 11:42:17 [emerg] 1780#9220: CreateFile() "D:\foolishr\src/foolishr/src/logs/nginx/error.log" failed (3: The system cannot find the path specified)
+2025/02/19 11:42:38 [emerg] 11648#11572: CreateFile() "D:\foolishr\src/foolishr/src/logs/nginx/access.log" failed (3: The system cannot find the path specified)
+2025/02/19 11:54:41 [notice] 1704#5172: signal process started
+2025/02/19 11:56:02 [notice] 9920#13648: signal process started
+2025/02/19 12:08:21 [notice] 11356#13376: signal process started

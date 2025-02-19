@@ -133,7 +133,7 @@ func NewLaptop() *pb.Laptop {
 		Weight: &pb.Laptop_WeightKg{
 			WeightKg: randomFloat64(1.0, 3.0),
 		},
-		Price:    randomFloat64(1500, 3500),
+		PriceUsd:    randomFloat64(1500, 3500),
 		ReleaseYear: uint32(randomInt(2015, 2019)),
 		UpdatedAt:   timestamppb.Now(),
 	}

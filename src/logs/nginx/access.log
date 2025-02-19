@@ -1,0 +1,5 @@
+127.0.0.1 - - [19/Feb/2025:11:59:34 +0800] "POST /AuthService/Login HTTP/2.0" 200 160 "-" "grpc-go/1.70.0"
+127.0.0.1 - - [19/Feb/2025:11:59:34 +0800] "POST /LaptopService/CreateLaptop HTTP/2.0" 200 43 "-" "grpc-go/1.70.0"
+127.0.0.1 - - [19/Feb/2025:11:59:34 +0800] "POST /LaptopService/CreateLaptop HTTP/2.0" 200 43 "-" "grpc-go/1.70.0"
+127.0.0.1 - - [19/Feb/2025:11:59:35 +0800] "POST /LaptopService/CreateLaptop HTTP/2.0" 200 43 "-" "grpc-go/1.70.0"
+127.0.0.1 - - [19/Feb/2025:11:59:48 +0800] "POST /LaptopService/RateLaptop HTTP/2.0" 200 0 "-" "grpc-go/1.70.0"

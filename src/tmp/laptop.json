@@ -1,0 +1,62 @@
+{
+  "id":  "082d5b16-111c-4b4d-8789-91b9b1caaef2",
+  "brand":  "Apple",
+  "name":  "Macbook Air",
+  "cpu":  {
+    "brand":  "AMD",
+    "name":  "Ryzen 7 PRO 2700U",
+    "num_cores":  2,
+    "num_threads":  7,
+    "min_ghz":  3.34611749961371,
+    "max_ghz":  4.560009323707415
+  },
+  "ram":  {
+    "value":  "51",
+    "unit":  "GIGABYTE"
+  },
+  "gpus":  [
+    {
+      "brand":  "Nvidia",
+      "name":  "GTX 1660-Ti",
+      "min_ghz":  1.4140625565466984,
+      "max_ghz":  1.6342956327762974,
+      "memory":  {
+        "value":  "2",
+        "unit":  "GIGABYTE"
+      }
+    }
+  ],
+  "storages":  [
+    {
+      "driver":  "SSD",
+      "memory":  {
+        "value":  "452",
+        "unit":  "GIGABYTE"
+      }
+    },
+    {
+      "driver":  "HDD",
+      "memory":  {
+        "value":  "6",
+        "unit":  "TERABYTE"
+      }
+    }
+  ],
+  "screen":  {
+    "size_inch":  13.2455635,
+    "resolution":  {
+      "width":  4807,
+      "height":  2704
+    },
+    "panel":  "OLED",
+    "multitouch":  true
+  },
+  "keyboard":  {
+    "layout":  "QWERTY",
+    "backlit":  false
+  },
+  "weight_kg":  1.2534377682393658,
+  "price":  2273.647153186724,
+  "release_year":  2018,
+  "updated_at":  "2025-02-15T10:37:26.111565700Z"
+}
