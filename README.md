@@ -1,15 +1,16 @@
 # foolishr
 
-This project aims to record my study of web dev based on go, grpc,gin,gorm,vue,docker,k8s
+This project aims to record my study of web dev based on go, grpc,gin,gorm
 
 
 ## tools used:
-- vscode, extensions:vscode-proto3, go, docker
+- vscode, extensions:vscode-proto3, go
 - chocolatey
 - postman, swagger.io
 
 ## how to run:
 - cd src
+- make gen to generate the protocol buff related go files and swagger realted json files
 - for tls, run gen.sh under cert folder
 - run grpc part: make server(-tls), make client(-tls)
 - for load balance: nginx, and check the nginx.conf for ssl, grpc services mapping; then run multiple server by make server(1/2)(-tls)
